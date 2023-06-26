@@ -14,9 +14,9 @@ function handlerClick(ev) {
     const image = galleryItems.find(
       ({ original }) => original === ev.target.dataset.source
     );
-    const imageAdresddress = image.original;
+    const imageAddress = image.original;
     const instance = basicLightbox.create(`
-    <img src="${imageAdresddress}" width="800" height="600">
+    <img src="${imageAddress}" width="800" height="600">
 `);
     // const instance = basicLightbox.create(createModalMarkup(image));
     instance.show();
