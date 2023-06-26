@@ -12,7 +12,6 @@ function handlerClick(ev) {
     captionsData: "alt",
     captionDelay: 250,
     showCounter: false,
-    download: true,
   });
   galleryList.removeEventListener("click", handlerClick);
 }
