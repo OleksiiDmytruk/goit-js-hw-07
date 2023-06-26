@@ -8,7 +8,7 @@ galleryList.insertAdjacentHTML("beforeend", createMarkupItems(galleryItems));
 galleryList.addEventListener("click", handlerClick);
 
 function handlerClick(ev) {
-  var lightbox = new SimpleLightbox(".gallery a", {
+  new SimpleLightbox(".gallery a", {
     captionsData: "alt",
     captionDelay: 250,
     showCounter: false,
