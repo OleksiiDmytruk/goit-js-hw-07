@@ -1,8 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-// console.log(galleryItems);
-
 const galleryList = document.querySelector(".gallery");
 galleryList.insertAdjacentHTML("beforeend", createMarkupItems(galleryItems));
 galleryList.addEventListener("click", handlerClick);
@@ -10,24 +8,32 @@ galleryList.addEventListener("click", handlerClick);
 function handlerClick(ev) {
   ev.preventDefault();
 
-  if (ev.target !== ev.currentTarget) {
+  if (ev.target.classList.contains("gallery__image")) {
     const image = galleryItems.find(
       ({ original }) => original === ev.target.dataset.source
     );
     const imageAddress = image.original;
-    const instance = basicLightbox.create(`
-    <img src="${imageAddress}" width="800" height="600">
-`);
-    // const instance = basicLightbox.create(createModalMarkup(image));
+    const instance = basicLightbox.create(
+      `
+    <img src="${imageAddress}" width="800" height="600">`,
+      {
+        onShow: () => {
+          document.addEventListener("keydown", closeModal);
+        },
+        onClose: () => {
+          document.removeEventListener("keydown", closeModal);
+        },
+      }
+    );
     instance.show();
+
+    function closeModal(ev) {
+      if (ev.code === "Escape") {
+        instance.close();
+      }
+    }
   }
 }
-// function createModalMarkup({ original, description } = {}) {
-//   return ` <img
-//       src="${original}"
-//       data-source="${original}"
-//       alt="${description}"/>`;
-// }
 
 function createMarkupItems(arr) {
   return arr

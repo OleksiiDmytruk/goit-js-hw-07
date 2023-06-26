@@ -1,20 +1,14 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-// console.log(galleryItems);
-
 const galleryList = document.querySelector(".gallery");
 galleryList.insertAdjacentHTML("beforeend", createMarkupItems(galleryItems));
-galleryList.addEventListener("click", handlerClick);
 
-function handlerClick(ev) {
-  new SimpleLightbox(".gallery a", {
-    captionsData: "alt",
-    captionDelay: 250,
-    showCounter: false,
-  });
-  galleryList.removeEventListener("click", handlerClick);
-}
+new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+  showCounter: false,
+});
 
 function createMarkupItems(arr) {
   return arr
